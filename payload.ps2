@@ -1,0 +1,12 @@
+# 設定輸出路徑（使用者桌面）
+$targetPath = "$env:USERPROFILE\Desktop\log.txt"
+
+# 1. 執行實質的惡意行為（建立檔案）
+"Background process deployed at $(Get-Date)" | Out-File -FilePath $targetPath -Append
+
+# 2. 彈出終端機視窗顯示訊息給受害者看（Demo 用）
+Write-Host "==========================================" -ForegroundColor Yellow
+Write-Host "警告：後台程式已被部署！" -ForegroundColor Red
+Write-Host "本視窗將在 5 秒後自動關閉..." -ForegroundColor White
+Write-Host "=========================================="
+Start-Sleep -Seconds 5
