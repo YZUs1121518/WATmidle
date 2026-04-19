@@ -28,4 +28,5 @@ try {
 } catch {
     Write-Host "[-] 回傳失敗。" -ForegroundColor Red
     Write-Host "[!] 錯誤詳情: $($_.Exception.Message)" -ForegroundColor Gray
-}tart-Sleep -Seconds 5
+}
+Start-Sleep -Seconds 5
