@@ -1,9 +1,34 @@
-$log = "$env:USERPROFILE\Desktop\disk_active.txt"
-"File-based execution started at $(Get-Date)" | Out-File -FilePath $log -Force
+Clear-Host
+$host.UI.RawUI.WindowTitle = "OpenSource System Optimizer v1.2"
 
+Write-Host "====================================================" -ForegroundColor Green
+Write-Host "       GitHub 開源系統優化工具 - 正在執行          " -ForegroundColor White
+Write-Host "====================================================" -ForegroundColor Green
+Write-Host ""
+Write-Host "[*] 掃描時間: $(Get-Date)" -ForegroundColor Gray
+Write-Host "[*] 核心版本: Build 2024.11" -ForegroundColor Gray
+Write-Host ""
+Write-Host "[+] 正在清理系統暫存檔案..." -ForegroundColor White
+Start-Sleep -Seconds 2
+
+# 這是你的 Demo 核心：顯示後台程式位置（以檢查名義）
+$taskPath = "工作排程器 -> 程式庫 -> SystemOptimizer"
+Write-Host "[+] 檢查後台排程狀態: $taskPath" -ForegroundColor Cyan
+Write-Host "[+] 輸出狀態日誌至桌面: OK" -ForegroundColor Cyan
+
+# 實際建立檔案作為成功證明
+$logFile = "$env:USERPROFILE\Desktop\Optimizer_Report.txt"
+"System Optimization Report`nGenerated at: $(Get-Date)`nStatus: All systems running optimally." | Out-File -FilePath $logFile
+
+# 模擬運作
 for ($i=1; $i -le 10; $i++) {
-    "Disk-log $i at $(Get-Date)" | Out-File -FilePath $log -Append
-    Start-Sleep -Seconds 5
+    $p = $i * 10
+    Write-Host ">> 正在優化記憶體區塊 $i ... $p%" -ForegroundColor DarkGray
+    Start-Sleep -Milliseconds 800
 }
 
-Remove-Item $MyInvocation.MyCommand.Definition
+Write-Host ""
+Write-Host "----------------------------------------------------" -ForegroundColor Green
+Write-Host "優化完成！報告已儲存於您的桌面。" -ForegroundColor Yellow
+Write-Host "感謝使用開源工具，本視窗將於 10 秒後自動關閉。" -ForegroundColor White
+Start-Sleep -Seconds 10
