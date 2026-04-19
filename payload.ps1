@@ -1,22 +1,17 @@
-# GitHub 檔案內容：payload.ps1
+# GitHub 內容：payload.ps1
 $targetPath = "C:\Lab\ProtectedDemo\pwned.txt"
 
 try {
-    # 嘗試建立檔案
-    New-Item -Path $targetPath -ItemType File -Force -ErrorAction Stop | Out-Null
+    # 建立檔案並寫入一點內容
+    "Pwned by PowerShell Lab" | Out-File -FilePath $targetPath -Encoding utf8 -Force
     
-    $status = "[+] 成功繞過權限或以高權限執行！"
-    $color = "Green"
+    Write-Host "`n------------------------------------------" -ForegroundColor Green
+    Write-Host "[+] 攻擊成功！檔案已建立。" -ForegroundColor Green
+    Write-Host "[+] 位置: $targetPath" -ForegroundColor Cyan
+    Write-Host "------------------------------------------"
 } catch {
-    $status = "[!] 寫入失敗：權限不足 (Access Denied)"
-    $color = "Red"
+    Write-Host "`n[!] 寫入失敗：權限不足。" -ForegroundColor Red
 }
 
-# 顯示結果
-Write-Host "------------------------------------------"
-Write-Host $status -ForegroundColor $color
-Write-Host "[+] 嘗試路徑: $targetPath" -ForegroundColor Cyan
-Write-Host "------------------------------------------"
-
-# 清除歷史紀錄
+# 清除當前 Session 的 PSReadline 紀錄
 Remove-Item (Get-PSReadlineOption).HistorySavePath -ErrorAction SilentlyContinue
