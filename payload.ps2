@@ -1,34 +1,29 @@
+# 1. 視覺與聽覺警告
+[System.Media.SystemSounds]::Hand.Play() # 發出系統錯誤音
 Clear-Host
-$host.UI.RawUI.WindowTitle = "OpenSource System Optimizer v1.2"
+$host.UI.RawUI.WindowTitle = "CRITICAL SYSTEM WARNING" # 修改視窗標題
 
-Write-Host "====================================================" -ForegroundColor Green
-Write-Host "       GitHub 開源系統優化工具 - 正在執行          " -ForegroundColor White
-Write-Host "====================================================" -ForegroundColor Green
+# 2. 顯示資訊
+Write-Host "==========================================" -ForegroundColor Red -BackgroundColor Black
+Write-Host "      [!] 後台程式已被部署 (模擬演示)      " -ForegroundColor Yellow -BackgroundColor Black
+Write-Host "==========================================" -ForegroundColor Red -BackgroundColor Black
 Write-Host ""
-Write-Host "[*] 掃描時間: $(Get-Date)" -ForegroundColor Gray
-Write-Host "[*] 核心版本: Build 2024.11" -ForegroundColor Gray
+Write-Host "[*] 部署時間: $(Get-Date)" -ForegroundColor White
+Write-Host "[*] 來源網址: https://github.com/..." -ForegroundColor Gray
+Write-Host "[*] 執行身份: $(whoami)" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "[+] 正在清理系統暫存檔案..." -ForegroundColor White
-Start-Sleep -Seconds 2
+Write-Host "------------------------------------------"
+Write-Host "正在模擬後台數據傳輸 (C2 Beaconing)..." -ForegroundColor DarkGray
 
-# 這是你的 Demo 核心：顯示後台程式位置（以檢查名義）
-$taskPath = "工作排程器 -> 程式庫 -> SystemOptimizer"
-Write-Host "[+] 檢查後台排程狀態: $taskPath" -ForegroundColor Cyan
-Write-Host "[+] 輸出狀態日誌至桌面: OK" -ForegroundColor Cyan
+# 3. 實質動作：在桌面建立證明檔案
+$logFile = "$env:USERPROFILE\Desktop\INFECTED.txt"
+"System compromised at $(Get-Date)" | Out-File -FilePath $logFile
 
-# 實際建立檔案作為成功證明
-$logFile = "$env:USERPROFILE\Desktop\Optimizer_Report.txt"
-"System Optimization Report`nGenerated at: $(Get-Date)`nStatus: All systems running optimally." | Out-File -FilePath $logFile
-
-# 模擬運作
+# 4. 持續運作模擬 (每 3 秒更新一次)
 for ($i=1; $i -le 10; $i++) {
-    $p = $i * 10
-    Write-Host ">> 正在優化記憶體區塊 $i ... $p%" -ForegroundColor DarkGray
-    Start-Sleep -Milliseconds 800
+    Write-Host "  >> 傳送封包池 #$i ... 成功" -ForegroundColor DarkCyan
+    Start-Sleep -Seconds 3
 }
 
-Write-Host ""
-Write-Host "----------------------------------------------------" -ForegroundColor Green
-Write-Host "優化完成！報告已儲存於您的桌面。" -ForegroundColor Yellow
-Write-Host "感謝使用開源工具，本視窗將於 10 秒後自動關閉。" -ForegroundColor White
-Start-Sleep -Seconds 10
+Write-Host "`n[+] 模擬任務完成，視窗即將自動關閉。" -ForegroundColor Green
+Start-Sleep -Seconds 5
